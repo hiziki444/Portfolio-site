@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>MultiPlay</title>
+        <link rel="stylesheet" href="../css/Work_01.css">
+    </head>
+    <body>
+        <div class="top">
+            <h1> MultiPlay </h1>
+        </div>
+        <div class="overview">
+            <h2> 作品概要 </h2>
+            <p></p>
+            <div class="image_margin">
+                <img src="../images/work_01/MultiPlay_Matching1.png" class="TitleImage" alt="マッチング画面（クライアント視点）">
+                <img src="../images/work_01/MultiPlay_Matching2.png" class="InGameImage" alt="マッチング画面（エディタ/サーバー視点）">
+            </div>
+        </div>
+        <div class="detail-list">
+            <div class="detail">
+                <h3> ゲームジャンル </h3>
+                <p> マルチプレイ </p>
+            </div>
+            <div class="detail">
+                <h3> 開発環境・使用言語 </h3>
+                <p> Unreal Engine 5 </p>
+            </div>
+            <div class="detail">
+                <h3> 製作期間 </h3>
+                <p>一か月</p>
+            </div>
+            <div class="detail">
+                <h3> 作成人数 </h3>
+                <p>一人</p>
+            </div>
+            <div class="detail">
+                <h3> 担当箇所 </h3>
+                <p> 企画・設計・実装（全工程）</p>
+            </div>
+            <div class="detail">
+                <h3> 動画URL </h3>
+                <p><a
+                        href="https://drive.google.com/file/d/1Bd8aWQuuYIWbDHDjawcNuOV7ooYwYhmQ/view?usp=drive_link">https://drive.google.com/file/d/1Bd8aWQuuYIWbDHDjawcNuOV7ooYwYhmQ/view?usp=drive_link</a>
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="reason">
+            <h2> 制作背景 </h2>
+            <p>授業でUnreal Engine 5のネットワーク機能について
+                <br>学ぶ課題として制作しました。
+                <br>個人でどこまでオンライン対戦・協力プレイの
+                <br>仕組みを理解し実装できるか試すため、
+                <br>ローカル2人プレイとオンライン接続の両方に
+                <br>対応したマルチプレイ基盤を作ることに挑戦しました。</p>
+        </div>
+        <hr>
+        <div class="try">
+            <h2> 挑戦したこと </h2>
+            <p> 対戦型のマルチプレイゲームであるため、
+                <br>先に準備が整った側だけ先に動けてしまうと不公平になってしまいます。 
+                <br>そこで、InGameに入ると待機画面を表示し、
+                <br>2人のプレイヤーが揃っていること、
+                <br>そしてお互いが準備完了ボタンを押していることを確認してから、 
+                <br>ゲームが同時に始まるようにする仕組みを実装しました。 </p>
+            <div class="image_margin">
+                <img src="../images/work_01/ControlSystem.png" class="InGameImage" alt="入力デバイス振り分け処理のブループリント（BP_ThirdPersonCharacter イベントグラフ）">
+            </div>
+        </div>
+        <hr>
+        <div class="ingenuity">
+            <h2> 工夫したこと </h2>
+            <h3> 入力デバイスの自動振り分け </h3>
+            <p> ローカル2人プレイでは、1台のPCで2つのウィンドウ
+                <br>（サーバー用とクライアント用）を同時に動かすため、
+                <br>最低でも2人は同時に操作できるようにする必要がありました。
+                <br>そこで、キャラクターの起動時に
+                <br>自分がサーバー側かクライアント側かを判定し、
+                <br>サーバー側ならキーボード用、
+                <br>クライアント側ならゲームパッド用のマッピングコンテキストを
+                <br>自動的に割り当てるようにしました。
+                <br>この仕組みにより、同じPCでプレイできるようになりました。
+            </p>
+        </div>
+        <hr>
+        <div class="learn">
+            <h2> 学んだこと </h2>
+            <p>
+                今回、UE5でのネットワークを使ったゲームの作り方を学んだうえで
+                <br>最も大きな学びは、どこまでをサーバー側で処理して
+                <br>それ以外を各々の所で処理させるかを学べたことです。
+                <br>例えば、サーバー側で動かすのはお互いが
+                <br>リアルタイムで共有すべきHPの減算や勝敗判定で
+                <br>各々で行うのは自分自身がサーバーかクライアントかを
+                <br>判断して行う入力デバイスのマッピングコンテキストの割り当て
+                <br>など仕組みを考えてどちらで行うかがわかるようになりました。
+                <br>今後、UE以外でのネットワークを介したシステムを作る際にも
+                <br>活かしていきたいと思います。
+
+            </p>
+        </div>
+
+        <a href="../../../index.html" class="back-link" onclick="if (history.length > 1) { history.back(); return false; }">前のページへ戻る<br></a>
+        
+        <script src="../../../js/lightbox.js"></script>
+    </body>
+</html>

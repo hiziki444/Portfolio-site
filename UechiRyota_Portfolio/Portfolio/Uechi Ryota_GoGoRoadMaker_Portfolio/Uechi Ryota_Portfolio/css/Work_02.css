@@ -1,0 +1,203 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
+ 
+:root{
+    --sky-top:#BEE3F5;
+    --sky:#8ECAE6;
+    --grass-dark:#3E6425;
+    --grass:#6FA33D;
+    --wood-dark:#4A2F18;
+    --wood:#8B5A2B;
+    --wood-light:#C9975E;
+    --cream:#F5E9C9;
+    --ink:#33230F;
+    --road-blue:#2E86AB;
+    --line: rgba(74,47,24,0.35);
+}
+ 
+body{
+    margin: 0;
+    font-family: 'M PLUS Rounded 1c', メイリオ, sans-serif;
+    background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky) 22%, var(--grass) 55%, var(--grass-dark) 100%) fixed;
+    color: var(--ink);
+    text-align: center;
+}
+ 
+h1{
+    font-family: 'Press Start 2P', 'M PLUS Rounded 1c', sans-serif;
+    font-size: 210%;
+    line-height: 1.6;
+    padding-bottom: 10px;
+    color: var(--cream);
+    text-shadow:
+        -3px -3px 0 var(--wood-dark), 3px -3px 0 var(--wood-dark),
+        -3px 3px 0 var(--wood-dark), 3px 3px 0 var(--wood-dark),
+        0 8px 0 rgba(0,0,0,.25);
+}
+h2{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 800;
+    color: var(--wood-dark);
+    margin-bottom: 4px;
+    position: relative;
+    display: inline-block;
+}
+h2::after{
+    content:"";
+    display:block;
+    width:56px; height:5px;
+    margin: 8px auto 0;
+    background: repeating-linear-gradient(90deg, var(--road-blue) 0 8px, transparent 8px 14px);
+    border-radius: 2px;
+}
+h3{
+    margin-bottom: 0;
+    color: var(--cream);
+}
+p{
+    padding-top: 5px;
+    padding-bottom: 0;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    line-height: 1.9;
+    color: var(--ink);
+}
+a{ color: var(--road-blue); font-weight: 700; }
+a:hover{ color: var(--wood-dark); }
+ 
+hr{
+    border: none;
+    height: 6px;
+    max-width: 680px;
+    width: 85%;
+    margin: 52px auto;
+    background: repeating-linear-gradient(90deg, var(--cream) 0 16px, transparent 16px 30px);
+    opacity: .85;
+    border-radius: 3px;
+}
+ 
+.top{
+    color: var(--cream);
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 24px;
+    background: linear-gradient(180deg, var(--sky-top), var(--sky));
+    width: 100%;
+}
+ 
+/* 木の看板パネル（本文セクション共通） */
+.overview, .reason, .try, .ingenuity, .learn{
+    background: var(--wood);
+    color: var(--cream);
+    max-width: 760px;
+    margin: 0 auto 34px;
+    padding: 32px 28px;
+    border: 6px solid var(--wood-dark);
+    box-shadow: 0 10px 0 rgba(0,0,0,.2), 0 16px 26px rgba(0,0,0,.25);
+    text-align: center;
+}
+.overview{ margin-top: 44px; }
+.overview p, .reason p, .try p, .ingenuity p, .learn p{ color: var(--cream); }
+.ingenuity{ margin-bottom: 64px; }
+ 
+/* スクリーンショット類 */
+.image_margin{
+    margin-bottom: 10px;
+    padding: 18px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+}
+.image_margin img{
+    max-width: 360px;
+    width: 100%;
+    height: auto;
+    border: 5px solid var(--cream);
+    outline: 3px solid var(--wood-dark);
+    box-shadow: 0 10px 22px rgba(0,0,0,.3);
+    cursor: zoom-in;
+    transition: opacity .15s ease;
+}
+.image_margin img:hover{
+    opacity: .85;
+}
+.image_margin img:nth-child(1){ transform: rotate(-1.5deg); }
+.image_margin img:nth-child(2){ transform: rotate(1.5deg); }
+ 
+/* 画像タップで拡大表示するライトボックス */
+.lightbox{
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(10,10,10,.92);
+    z-index: 100;
+    cursor: zoom-out;
+}
+.lightbox.is-open{ display: flex; }
+.lightbox img{
+    max-width: 92vw;
+    max-height: 92vh;
+    width: auto;
+    height: auto;
+    border: 5px solid var(--cream);
+    outline: 3px solid var(--wood-dark);
+    box-shadow: 0 10px 22px rgba(0,0,0,.4);
+}
+
+/* ゲームジャンル・開発環境などの短い情報カード */
+.detail{
+    display: inline-block;
+    vertical-align: top;
+    width: 200px;
+    margin: 0 10px 28px;
+    padding: 18px 16px;
+    background: var(--wood-dark);
+    border: 3px solid var(--cream);
+    box-shadow: 0 6px 16px rgba(0,0,0,.3);
+    text-align: center;
+}
+.detail h3{
+    color: var(--cream);
+    font-size: .92rem;
+    margin-bottom: 8px;
+}
+.detail p{
+    color: var(--wood-light);
+    margin: 0;
+    font-size: .88rem;
+    word-break: break-all;
+}
+.detail a{ color: #9FD6EE; }
+ 
+
+.back-link{
+    display: inline-block;
+    margin: 40px auto;
+    padding: 10px 24px;
+    border: 1px solid currentColor;
+    color: inherit;
+    text-decoration: none;
+    font-size: .9rem;
+    opacity: .85;
+    transition: opacity .15s ease;
+}
+.back-link:hover{ opacity: 1; }
+
+.detail-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+@media (max-width: 700px){
+    h1{ font-size: 140%; }
+    .overview, .reason, .try, .ingenuity, .learn{ padding: 22px 16px; }
+    .detail{ width: 78%; max-width: 300px; }
+    .image_margin img:nth-child(1), .image_margin img:nth-child(2){ transform:none; }
+}

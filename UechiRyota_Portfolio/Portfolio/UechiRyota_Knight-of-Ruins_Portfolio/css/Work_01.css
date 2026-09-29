@@ -1,0 +1,248 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Noto+Serif+JP:wght@400;600;700&family=Source+Code+Pro:wght@400;500&display=swap');
+ 
+:root{
+    --bg-deep:#1B120A;
+    --bg-mid:#2E2014;
+    --stone:#4A3520;
+    --sand:#C9A66B;
+    --sand-light:#9b6c05;
+    --gold:#dcad56;
+    --gold-bright:#F0CE8E;
+    --paper:#EFE0C0;
+    --ink:#2B1D10;
+    --line: rgba(217,179,108,0.45);
+}
+ 
+body{
+    margin: 0;
+    font-family: 'Noto Serif JP', メイリオ, serif;
+    background: radial-gradient(ellipse at 50% -10%, var(--bg-mid), var(--bg-deep) 65%) fixed;
+    color: var(--sand-light);
+    text-align: center;
+}
+ 
+h1{
+    font-family: 'Cinzel', serif;
+    font-size: 340%;
+    font-weight: 700;
+    letter-spacing: .05em;
+    padding-bottom: 10px;
+    color: var(--gold-bright);
+    text-shadow: 0 2px 0 rgba(0,0,0,.5), 0 0 24px rgba(217,179,108,.35);
+}
+h2{
+    font-family: 'Noto Serif JP', serif;
+    color: var(--gold);
+    letter-spacing: .04em;
+    margin-bottom: 4px;
+    position: relative;
+    display: inline-block;
+}
+h2::after{
+    content:"";
+    display:block;
+    width:60px; height:2px;
+    margin: 8px auto 0;
+    background: var(--gold);
+    opacity:.6;
+}
+h3{
+    margin-bottom: 0;
+    color: var(--sand-light);
+}
+p{
+    padding-top: 5px;
+    padding-bottom: 0;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: var(--ink);
+    line-height: 1.9;
+}
+a{
+    color: var(--gold-bright);
+    text-decoration-color: rgba(217,179,108,.5);
+}
+a:hover{ color: var(--sand-light); }
+ 
+hr{
+    border: none;
+    height: 1px;
+    max-width: 780px;
+    width: 90%;
+    margin: 56px auto;
+    background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+    position: relative;
+}
+hr::after{
+    content: "◆";
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-deep);
+    color: var(--gold);
+    padding: 0 10px;
+    font-size: .65rem;
+}
+ 
+.top{
+    color: var(--gold-bright);
+    text-align: center;
+    padding-top: 70px;
+    padding-bottom: 28px;
+    background: linear-gradient(180deg, var(--stone), var(--bg-mid));
+    border-bottom: 2px solid var(--line);
+    width: 100%;
+}
+ 
+/* パピルス/石板パネル（本文セクション共通） */
+.overview, .reason, .try, .ingenuity, .learn{
+    background: var(--paper);
+    color: var(--ink);
+    max-width: 780px;
+    margin: 0 auto 32px;
+    padding: 34px 30px;
+    border: 1px solid var(--line);
+    box-shadow: 0 0 0 6px rgba(0,0,0,.15) inset, 0 14px 30px rgba(0,0,0,.35);
+    text-align: center;
+}
+.overview{ margin-top: 40px; }
+.ingenuity{ margin-bottom: 60px; }
+ 
+/* 概要・工夫の画像/動画枠 */
+.image_margin{
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.TitleImage, .InGameImage{
+    max-width: 420px;
+    width: 100%;
+    height: auto;
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 0 5px var(--bg-deep), 0 14px 30px rgba(0,0,0,.4);
+    cursor: zoom-in;
+    transition: opacity .15s ease;
+}
+.TitleImage:hover, .InGameImage:hover{
+    opacity: .85;
+}
+
+/* 画像タップで拡大表示するライトボックス */
+.lightbox{
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(10,7,4,.92);
+    z-index: 100;
+    cursor: zoom-out;
+}
+.lightbox.is-open{ display: flex; }
+.lightbox img{
+    max-width: 92vw;
+    max-height: 92vh;
+    width: auto;
+    height: auto;
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 0 5px var(--bg-deep), 0 14px 30px rgba(0,0,0,.5);
+}
+.Video{
+    max-width: 560px;
+    width: 100%;
+    height: auto;
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 0 5px var(--bg-deep), 0 14px 30px rgba(0,0,0,.4);
+}
+ 
+/* ゲームジャンル・開発環境などの短い情報カード */
+.detail{
+    display: inline-block;
+    vertical-align: top;
+    width: 210px;
+    margin: 0 10px 28px;
+    padding: 20px 16px;
+    background: var(--stone);
+    border: 1px solid var(--line);
+    box-shadow: 0 8px 20px rgba(0,0,0,.35);
+    text-align: center;
+}
+.detail h3{
+    color: var(--gold-bright);
+    font-size: .95rem;
+    margin-bottom: 8px;
+}
+.detail p{
+    color: var(--sand-light);
+    margin: 0;
+    font-size: .9rem;
+    word-break: break-all;
+}
+.detail a{ color: var(--gold-bright); }
+
+/* ソースコード抜粋 */
+.code-caption{
+    color: var(--ink);
+    font-size: .95rem;
+    margin-top: 10px;
+    margin-bottom: 14px;
+    font-family: 'Noto Serif JP', serif;
+}
+.code-block{
+    background: var(--bg-deep);
+    color: var(--gold-bright);
+    text-align: left;
+    max-width: 640px;
+    margin: 0 auto 18px;
+    padding: 22px 24px;
+    border: 1px solid var(--line);
+    box-shadow: 0 0 0 4px rgba(0,0,0,.2) inset, 0 12px 26px rgba(0,0,0,.4);
+    overflow-x: auto;
+}
+.code-block pre{
+    margin: 0;
+    font-family: 'Source Code Pro', 'Courier New', monospace;
+    font-size: .82rem;
+    line-height: 1.7;
+    white-space: pre;
+}
+.code-note{
+    color: var(--ink);
+    font-size: .88rem;
+    max-width: 640px;
+    margin: 0 auto 10px;
+    line-height: 1.7;
+}
+
+.back-link{
+    display: inline-block;
+    margin: 40px auto;
+    padding: 10px 24px;
+    border: 1px solid currentColor;
+    color: inherit;
+    text-decoration: none;
+    font-size: .9rem;
+    opacity: .85;
+    transition: opacity .15s ease;
+}
+.back-link:hover{ opacity: 1; }
+ 
+.detail-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+@media (max-width: 700px){
+    h1{ font-size: 220%; }
+    .overview, .reason, .try, .ingenuity, .learn{ padding: 24px 18px; }
+    .detail{ width: 80%; max-width: 320px; }
+    .code-block{ padding: 16px 14px; }
+    .code-block pre{ font-size: .72rem; }
+}

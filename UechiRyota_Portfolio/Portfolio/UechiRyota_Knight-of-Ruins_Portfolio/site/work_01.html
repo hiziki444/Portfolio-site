@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Knight of Ruins</title>
+        <link rel="stylesheet" href="../css/Work_01.css">
+    </head>
+    <body>
+        <div class="top">
+            <h1> Knight of Ruins </h1>
+        </div>
+        <div class="overview">
+            <h2> 作品概要 </h2>
+            <p>Knight of Ruinsは、ジャスト回避から反撃へ繋げる
+                <br>爽快感をコンセプトに制作した3Dアクションゲームです。 
+                <br>操作は移動、攻撃、回避、ロックオン切り替えがあります。
+                <br>プレイヤーは敵の攻撃を見極め、
+                <br>タイミング良く回避することでジャスト回避が発生し、自動反撃へ繋げられます。
+                <br>3段コンボやロックオン切り替えを活用しながら複数の敵と戦います。</p>
+            <div class="image_margin">
+                <img src="../images/work_01/TGS2026_TitleImage.png" class="TitleImage" alt="タイトル画面">
+                <img src="../images/work_01/InGame.png" class="InGameImage" alt="ゲームメイン画面">
+            </div>
+        </div>
+        <div class="detail-list">
+            <div class="detail">
+                <h3> ゲームジャンル </h3>
+                <p> アクションゲーム </p>
+            </div>
+            <div class="detail">
+                <h3> 開発環境・使用言語 </h3>
+                <p> Visual Studio C++,Unreal Engine5.4 </p>
+            </div>
+            <div class="detail">
+                <h3> 製作期間 </h3>
+                <p> 2026/5か月 </p>
+            </div>
+            <div class="detail">
+                <h3> 作成人数 </h3>
+                <p> 4人 </p>
+            </div>
+            <div class="detail">
+                <h3> 担当部分 </h3>
+                <p> 雑魚敵の作成 <br>チュートリアルのデザイン <br>キャラクターの死亡時と雑魚敵で使うナイアガラ <br>SE&BGMの素材探し </p>
+            </div>
+            <div class="detail">
+                <h3> 動画URL </h3>
+                <p><a
+                        href="https://drive.google.com/file/d/1_0tqmoMFaB1-UzVFqIkF2NO-piDRIGqI/view?usp=drive_link">https://drive.google.com/file/d/1_0tqmoMFaB1-UzVFqIkF2NO-piDRIGqI/view?usp=drive_link</a>
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="reason">
+            <h2> 制作背景 </h2>
+            <p> Unreal EngineのC++で3Dゲームを作ろうとして、
+                <br>王道アクションゲームを作ることになりました。
+                <br>最初はゲーム性をゼルダ系で作ろうとしていましたが、
+                <br>UE5であることと使うアセットのデザインにより
+                <br>ソウルライク系に寄せることになりました。</p>
+        </div>
+        <hr>
+        <div class="try">
+            <h2> 挑戦したこと </h2>
+            <p> 今回挑戦したことは、AIエネミーをC++で作ることです。
+                <br>UEC++でのゲーム制作はこれが2回目で、初期段階はUEの仕様上躓くことが多々ありました。
+                <br>ですが中盤あたりからAIでUEでの書き方、仕様を学びC++の書き方に慣れてきて、
+                <br>作業スピードがBlueprintでプログラムするよりも早くなりました。</p>
+
+            <h3 class="code-caption">コード抜粋：スレッドセーフなコールバック処理</h3>
+            <div class="code-block">
+<pre><code>void AMobEnemy::OnHitMontageEnded(UAnimMontage* Montage, bool bInterrupted)
+{
+    // モンタージュの終了通知はメインスレッド以外から呼ばれることがある
+    if (!IsInGameThread())
+    {
+        // 弱参照で保持し、対象が破棄されていても安全に扱えるようにする
+        TWeakObjectPtr&lt;AMobEnemy&gt; WeakThis(this);
+
+        // メインスレッドに処理を移してから、もう一度自分自身を呼び直す
+        AsyncTask(ENamedThreads::GameThread, [WeakThis, Montage, bInterrupted]()
+            {
+                // 移動中に対象が破棄されていないか確認してから実行
+                if (WeakThis.IsValid())
+                {
+                    WeakThis-&gt;OnHitMontageEnded(Montage, bInterrupted);
+                }
+            });
+        return;
+    }
+
+    // ここから先はメインスレッド上で安全に実行される本処理
+    // （被弾状態の解除、Idle状態への復帰など）
+    ...
+}</code></pre>
+            </div>
+            <p >モンタージュの終了通知はメインスレッド以外から呼ばれることがあるため、
+                <br>その場合はメインスレッドに処理を移してから実行し、
+                <br>実行直前には対象が破棄されていないかも確認しています。
+                <br>「メインスレッド以外での処理」と「消えた対象への処理」による
+                <br>クラッシュを防ぎ、同じパターンを複数箇所で使っています。</p>
+        </div>
+        <hr>
+        <div class="ingenuity">
+            <h2> 工夫したこと </h2>
+            <h3> 雑魚敵達が纏まって行動しないようにすること</h3>
+            <p> 最初雑魚敵たちはプレイヤーを追いかけて行動するだけだったので、
+                <br>纏まって行動することが多々ありました。 
+                <br>そこでまず、プレイヤーに近づくとそれぞれがプレイヤーの周りを回るようにしました。
+                <br>それでも場所によってはすぐに纏まってしまうことがあったため、
+                <br>プレイヤーの動きに応じて左右に配置させる思考を加えたり、
+                <br>攻撃直前以外はプレイヤーとの距離をムリに詰めない思考を持たせたりしました。
+                <br>これらの工夫により、雑魚敵達が纏まることを減らすことができました。
+            </p>
+            <div class="image_margin">
+                <video src="../images/work_01/Video Project 3.mp4" class="Video" controls muted loop
+                    playsinline></video>
+            </div>
+            <hr>
+            <h3> 弱すぎず戦いの練習になる難易度 </h3>
+            <p> このゲームはステージが2つしかなく、ボスは難しめに設定しています。
+                <br>ただ、雑魚敵と戦って操作方法だけを覚え、
+                <br>攻撃の仕組みや回避のタイミングを掴めないままボス戦に挑ませてしまうと、
+                <br>理不尽に感じてしまう可能性があると考えました。
+                <br>そこでチュートリアルで操作方法を学び、
+                <br>雑魚戦でこのゲームでの戦闘を練習してもらえるよう、
+                <br>雑魚戦では敵の攻撃は最低でも一回はプレイヤーに当たるようにし、
+                <br>適当な戦い方をすると負けるように調整しました。
+        </div>
+        </div>
+        <hr>
+        <div class="learn">
+            <h2> 学んだこと </h2>
+            <p> 今回の制作で特に学んだのは、
+                <br>工夫したことでも書いたように、ただプレイヤーに近づいて攻撃するだけでなく、
+                <br>その前後に意味のある動きが必要だと学びました。
+                <br>知性的に見せるために何を判断基準として行動させるべきかを考えて、
+                <br>今回作った雑魚敵は、プレイヤーとの距離を判断基準として行動しています。
+                <br>例としてプレイヤーが至近距離まで近づくと
+                <br>攻撃または後退し攻撃の当たらない距離まで離れるようにしていており、
+                <br>その一方でプレイヤーを囲む時の距離は、
+                <br>プレイヤー側の攻撃は当たり、雑魚側の攻撃は当たらない距離に設定しています。
+                <br>
+                <br>この距離感の調整は数値だけで決まるものではありません。
+                <br>実際にプレイして「うまく戦えているか」「理不尽に感じないか」
+                <br>「動きとして違和感がないか」という感覚的な部分を、何度も検証しながら詰めていく必要がありました。
+                <br>そのためプログラムの正しさだけでなく、
+                <br>体験としての面白さを両立させることの難しさを実感しました。
+                <br>また、雑魚敵の行動一つにも、
+                <br>距離・タイミング・周囲の状況など複数の条件を組み合わせて判断させる必要があります。
+                <br>今後、より複雑な敵AIやボスの行動パターンを設計する際にも、
+                <br>こうした判断基準の考え方や検証の進め方を活かしていきたいと思います。 </p>
+        </div>
+
+        <a href="../../../index.html" class="back-link" onclick="if (history.length > 1) { history.back(); return false; }">前のページへ戻る</a>
+        <script src="../../../js/lightbox.js"></script>
+    </body>
+</html>
