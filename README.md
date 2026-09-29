@@ -1,3 +1,203 @@
-# Portfolio-site
-今まで作った作品のポートフォリオをまとめたものです。
-index.htmlから開くと全部のポートフォリオを閲覧することができます。
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Hijiki — Game Programmer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="UechiRyota_Portfolio/css/Work_01.css">
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <span class="mark disp">上地陵大</span>
+        <nav>
+          <a href="#works">作品</a>
+          <a href="#skills">スキル</a>
+          <a href="#motivation">志望動機</a>
+          <a href="#about">About</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="wrap">
+          <p class="eyebrow disp mono">国際電子ビジネス専門学校 3年 — 就職活動用ポートフォリオ</p>
+          <h1 class="disp">上地陵大</h1>
+          <p class="role disp">Game Programmer / <em>Unreal Engine 5 × C++</em></p>
+                  <p class="pitch">自分で多くを考えて動かすゲームが好きで、Overwatch、ストリートファイター6、デュエル・マスターズをよく遊んでいます。TYPE-MOON作品もよく遊んでおり、「月姫」「魔法使いの夜」「FGO」の中でも、「魔法使いの夜」はストーリーも登場人物も一番好きです。</p>
+          <p class="pitch">ゲーム業界に貢献できるプログラマーを目指し、Unreal Engine 5（C++ / Blueprint）でのゲーム開発を中心に学んできました。チーム開発でのマルチプレイヤー実装から、OpenGL/GLUTを使った低レイヤーな描画・物理シミュレーションまで、幅広く技術を積み重ねています。現在はUnityも勉強しています。</p>
+          <a class="goto" href="#works">作品を見る</a>
+        </div>
+      </section>
+      <section id="skills">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2 class="disp">Skills</h2>
+            <span>スキル</span>
+          </div>
+          <div class="skill-group">
+            <h3>言語</h3>
+            <ul>
+              <li>C++</li>
+              <li>Blueprint</li>
+              <li>OpenGL</li>
+              <li>GLUT</li>
+              <li>html/css</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>エンジン / API</h3>
+            <ul>
+              <li>Unreal Engine 5</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>システム設計</h3>
+            <ul>
+              <li>ネットワーク同期 (Replication / RPC)</li>
+              <li>Gameplay Ability System</li>
+              <li>AIビヘイビアツリー</li>
+              <li>UMG UI設計</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section id="works">
+        <div class="wrap">
+          <div class="sec-head">
+            <h2 class="disp">Works</h2>
+            <span>作品</span>
+          </div>
+          <article class="work">
+            <div class="work-head">
+              <h3 class="work-title">
+                <a class="goto has-preview" href="Portfolio/UechiRyota_Knight-of-Ruins_Portfolio/site/work_01.html">
+                  Knight of Ruins <img class="preview-img" src="images/work_01/KnightoFRuins.png" alt="">
+                </a>
+              </h3>
+              <span class="work-role mono">UE5 / C++・チーム開発</span>
+            </div>
+            <p class="work-desc">
+              ゲーム業界の展示イベント出展を目標に、仲間3名と開発したアクションゲーム。チュートリアルの説明するUIと雑魚敵AI全般、Niagaraによる撃破演出などを担当しました。</p>
+            <ul class="tags mono">
+              <li>C++</li>
+              <li>Gameplay Ability System</li>
+              <li>AI Behavior Tree</li>
+              <li>UMG</li>
+              <li>Niagara</li>
+            </ul>
+          </article>
+          <article class="work">
+            <div class="work-head">
+              <h3 class="work-title">
+                <a class="goto has-preview" href="Portfolio/MultiPlay/site/work_01.html">
+                  MultiPlay <img class="preview-img" src="images/work_01/MultiPlay.png" alt="">
+                </a>
+              </h3>
+              <span class="work-role mono">UE5 / 個人検証</span>
+            </div>
+          <p class="work-desc"> ローカル2人プレイとオンライン対戦の両立を検証したマルチプレイ基盤。ListenServer/Client構成でのネットワーク同期、Replicated変数とMulticast
+            RPCの使い分けに加え、1台のPCで2人が同時に操作できるよう、サーバー側かクライアント側かの判定に応じてキーボードとゲームパッドの入力を自動で振り分ける仕組みを実装しました。</p>
+            <ul class="tags mono">
+              <li>Blueprint</li>
+              <li>Networking</li>
+              <li>Replication</li>
+              <li>RPC</li>
+              <li>Input System</li>
+            </ul>
+          </article>
+          <article class="work">
+            <div class="work-head">
+              <h3 class="work-title">
+                <a class="goto has-preview" href="Portfolio/Uechi Ryota_GoGoRoadMaker_Portfolio/Uechi Ryota_Portfolio/site/work_01.html">
+                  Go! Go! Road Maker <img class="preview-img" src="images/work_01/InGame_image.png" alt="">
+                </a>
+              </h3>
+              <span class="work-role mono">C++・チーム開発</span>
+            </div>
+            <p class="work-desc">
+              木や岩を採取ツールで採取しながら道を繋げ、車をゴールまで導くパズルアクションゲーム。チュートリアル全般とステージ説明UI、各マップの初期考案を担当し、文章中心だった説明をアニメーション化することでチュートリアル時間を約半分に短縮しました。</p>
+            <ul class="tags mono">
+              <li>C++</li>
+              <li>パズルゲーム設計</li>
+              <li>チュートリアルUI</li>
+              <li>UIアニメーション</li>
+            </ul>
+          </article>
+          <article class="work">
+            <div class="work-head">
+              <h3 class="work-title">
+                <a class="goto has-preview" href="Portfolio/OpenGL/site/work_01.html">
+                  OpenGL/GLUT 物理シミュレーション <img class="preview-img" src="images/work_01/op_dice.png" alt="">
+                </a>
+              </h3>
+              <span class="work-role mono">C++・個人開発</span>
+            </div>
+            <p class="work-desc">
+              エンジンに頼らず、C++とOpenGL/GLUTで構築した3D描画・物理演習。テクスチャマッピングとクォータニオン回転によるOBJビューア、放物運動シミュレーションを実装し、座標系や描画パイプラインの基礎を固めました。
+            </p>
+            <ul class="tags mono">
+              <li>C++</li>
+              <li>OpenGL</li>
+              <li>GLUT</li>
+              <li>3D数学</li>
+              <li>物理演算</li>
+            </ul>
+          </article>
+          <p class="note">※ 現在4作品を掲載中。今後も制作物を追加予定です。</p>
+        </div>
+      </section>
+      <section id="motivation">
+        <div class="wrap motivation">
+          <div class="sec-head">
+            <h2 class="disp">Motivation</h2>
+            <span>志望動機</span>
+          </div>
+          <p class="lead">自分の書いたコードが、意思を持っているかのようにキャラクターを動かす瞬間に、いちばんのやりがいを感じます。</p>
+          <p>
+            小学生の頃、ITイベントで体験したゲームをきっかけに、ゲーム制作という仕事に強く惹かれました。専門学校でUnreal
+            Engine 5とC++を学ぶ中で、自分の書いたコードがすぐに動きへと変わる面白さに魅了され、この道を志すようになりました。
+          </p>
+          <p>
+            直近では「Knight of Ruins」の開発でビヘイビアツリーを用いた雑魚敵AIを担当し、索敵・攻撃・退避といった行動をノードとして分解しながら、状況に応じて自然に切り替わるよう調整を重ねました。プレイヤーが操作しないキャラクターに「意思」を感じさせる難しさとおもしろさを実感し、今後はこの経験を活かして、より説得力のあるキャラクターの振る舞いを作れるプログラマーを目指しています。
+          </p>
+        </div>
+      </section>
+     <section id="vision">
+  <div class="wrap motivation">
+    <div class="sec-head">
+      <h2 class="disp">Vision</h2>
+      <span>将来なりたい自分</span>
+    </div>
+    <p class="lead">学んだことを早いうちから仕事で活かし、少しでも早く任される技術者になりたいです。</p>
+    <p>
+      将来、様々なプログラミングの知識とノウハウを実務の中で身につけながら、
+      担当が全く違う人たちと一つのプロジェクトを完成させる経験を積みたいと考えています。
+      独立や管理よりも、専門学校で学んだことを最大限活かせる専門職として、
+      <br>現場で手を動かし続けられる技術者でありたいです。
+    </p>
+    <p>
+      そのために、今後は仕事で使えるプログラミング設計の知識をさらに増やし、
+      <br>状況に応じて活用法がすぐ思い浮かぶレベルまで身につけていきたいです。
+      <br>Knight of Ruinsで培った敵AI設計の経験を土台に、より複雑なAIやシステムにも挑戦しながら、
+      学んだことを腐らせず早く行動できるプログラマーを目指します。
+    </p>
+  </div>
+</section>
+    </main>
+    <footer>
+      <div class="wrap">
+        <div>
+          <h2 class="disp">Contact</h2>
+          <a class="contact-link mono" href="mailto:ryota-uechi-k24f@stu.kbc.ac.jp">ryota-uechi-k24f@stu.kbc.ac.jp</a>
+        </div>
+        <p class="copy mono">© 2026 UechiRyota</p>
+      </div>
+    </footer>
+  </body>
+</html>
